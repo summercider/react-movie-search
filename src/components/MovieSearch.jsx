@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-export default function MovieSearch({ setTitle, setType }) {
+export default function MovieSearch({ setTitle, setType, setPage }) {
   const inputRef = useRef(null); //일회성은 state안쓰고 ref로 추적만 하셈
 
   function handleSearch(e) {
@@ -9,6 +9,7 @@ export default function MovieSearch({ setTitle, setType }) {
     //검색필드 공백제거해서 내용이 있을떄만 실행
     if (inputRef.current.value.trim()) {
       setType('');
+      setPage(1);
       setTitle(inputRef.current.value); //추적값 확인해서 setTitle으로 titlestate변경
     }
   }
