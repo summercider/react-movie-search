@@ -13,6 +13,21 @@ export default function App() {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
+  const [state, setState] = useState({
+    movies: [],
+    title: 'bbc',
+    type: '',
+    page: 1,
+    totalPage: 0,
+  });
+
+  const updateState = (key, value) => {
+    setState((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
+
   useEffect(() => {
     //데이터처리는 비동기이기 떄문에 async>await 내가 만든순서대로 오류없게 해주셈 하는거임
     async function searchMovies() {
@@ -43,7 +58,7 @@ export default function App() {
   return (
     <div className="p-[20px]">
       <h2 className="text-[40px] text-gray-600">Movie LAND</h2>
-      <MovieSearch setTitle={setTitle} setType={setType} />
+      <MovieSearch setTitle={setTitle} setType={setType} setPage={setPage} />
       <MovieType setType={setType} type={type} setPage={setPage} />
       <MoiveList movies={movies} />
       {/* 데이터가 있을떄만 page 렌더링 */}
